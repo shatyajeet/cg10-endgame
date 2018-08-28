@@ -25,7 +25,7 @@ app.get('/start-stream', (req, res) => {
 });
 
 app.get('/latency', (req, res) => {
-  res.status(200).send(new Date().getTime());
+  res.send((new Date().getTime()).toString());
 });
 
 const server = http.createServer(app);
