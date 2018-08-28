@@ -12,10 +12,20 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(logger('dev'));
 
+app.use((req, res, next) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  
+  next();
+});
+
 app.get('/start-stream', (req, res) => {
   res.json({
     msg: 'started'
   });
+});
+
+app.get('/latency', (req, res) => {
+  res.status(200).send(new Date().getTime());
 });
 
 const server = http.createServer(app);
